@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "48536569600",
+    "project_id": "wasteit-4f657",
+    "storage_bucket": "wasteit-4f657.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:48536569600:android:c85d35254555805d16d5e5",
+        "android_client_info": {
+          "package_name": "com.example.wasteit"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "48536569600-4qr7erpgl6svv77om1nho8isjc9eet89.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCzXvqzQFzXI0OC6uOz_zR9xG9ZrVdP6AQ"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "48536569600-4qr7erpgl6svv77om1nho8isjc9eet89.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
