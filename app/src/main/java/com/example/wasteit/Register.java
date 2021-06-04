@@ -19,6 +19,9 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
 public class Register extends AppCompatActivity {
 
 
@@ -51,7 +54,8 @@ public class Register extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
-                if (checkFields()){
+                if (checkFields() && checkEmail(email.getText().toString()) && checkPassword(password.getText().toString())){
+
                     if (password.getText().toString().equals(confirmPassword.getText().toString())) {
 
                         UserDetails userDetails = new UserDetails();
@@ -64,14 +68,38 @@ public class Register extends AppCompatActivity {
                     }else{
                         Toast.makeText(getApplicationContext() , "Password Does Not Match" , Toast.LENGTH_LONG).show();
                     }
-                }
-                
 
+                }
+            
             }
         });
 
     }
 
+    //Method to check password text validity
+    private boolean checkPassword(String password){
+
+        String pattern = "^(?=.*[A-Za-z])(?=.*\\d)(?=.*[@$!%*#?&])[A-Za-z\\d@$!%*#?&]{6,}$";
+        Matcher patternMatcher = Pattern.compile(pattern).matcher(password);
+
+        if (!patternMatcher.matches()){
+            this.password.setError(" Must Contain Minimum six characters, at least one letter, one number and one special character");
+        }
+        return patternMatcher.matches();
+    }
+
+
+    //Method to check email text validity
+    private boolean checkEmail(String email){
+
+        String pattern = "[A-Z a-z 0-9]+@[0-9 A-Z a-z]+.com";
+
+        Pattern pattern1 = Pattern.compile(pattern);
+        Matcher matcher = pattern1.matcher(email);
+        return matcher.matches();
+    }
+
+    //Methods to check all the fields if they are empty or not
     private boolean checkFields(){
 
         boolean status = false;
@@ -135,7 +163,7 @@ public class Register extends AppCompatActivity {
                     Toast.makeText(getApplicationContext() , "Registration Failed : "+task.getException() , Toast.LENGTH_LONG).show();
 
                 }
-                
+
             }
         });
 
