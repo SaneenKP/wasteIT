@@ -1,0 +1,151 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".Register">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            >
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textSize="32sp"
+                android:text="Register"
+                android:gravity="left"
+                android:layout_marginTop="60dp"
+                android:layout_marginLeft="30dp"
+                android:layout_marginRight="30dp"
+                android:layout_marginBottom="30dp"
+                android:textColor="#000000"
+                android:textStyle="bold"
+                />
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:backgroundTint="@color/apptheme"
+                android:id="@+id/registerName"
+                android:hint="Name"
+                android:padding="20dp"
+                android:textSize="18sp"
+                android:drawableLeft="@drawable/name_icon"
+                android:drawablePadding="15dp"
+                android:layout_marginTop="40dp"
+                android:layout_marginLeft="30dp"
+                android:layout_marginRight="30dp"
+                android:layout_marginBottom="30dp"
+                />
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:backgroundTint="@color/apptheme"
+                android:id="@+id/registerAddress"
+                android:inputType="textMultiLine"
+                android:hint="Address"
+                android:padding="20dp"
+                android:textSize="18sp"
+                android:drawableLeft="@drawable/address_icon"
+                android:drawablePadding="15dp"
+                android:layout_marginLeft="30dp"
+                android:layout_marginRight="30dp"
+                android:layout_marginBottom="30dp"
+                />
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:backgroundTint="@color/apptheme"
+                android:id="@+id/registerHouseNo"
+                android:hint="House No"
+                android:padding="20dp"
+                android:textSize="18sp"
+                android:drawableLeft="@drawable/house_no_icon"
+                android:drawablePadding="15dp"
+                android:layout_marginLeft="30dp"
+                android:layout_marginRight="30dp"
+                android:layout_marginBottom="30dp"
+                />
+
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:backgroundTint="@color/apptheme"
+                android:id="@+id/registerEmail"
+                android:hint="email"
+                android:padding="20dp"
+                android:textSize="18sp"
+                android:drawableLeft="@drawable/email_icon"
+                android:drawablePadding="15dp"
+                android:layout_marginLeft="30dp"
+                android:layout_marginRight="30dp"
+                android:layout_marginBottom="30dp"
+                />
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:backgroundTint="@color/apptheme"
+                android:id="@+id/registerPassword"
+                android:hint="password"
+                android:layout_marginTop="10dp"
+                android:padding="18dp"
+                android:drawableLeft="@drawable/password_icon"
+                android:drawablePadding="15dp"
+                android:inputType="textPassword"
+                android:layout_marginLeft="30dp"
+                android:layout_marginRight="30dp"
+                android:layout_marginBottom="30dp"
+                />
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:backgroundTint="@color/apptheme"
+                android:id="@+id/registerConfirmPassword"
+                android:hint="confirm password"
+                android:layout_marginTop="10dp"
+                android:padding="18dp"
+                android:drawableLeft="@drawable/password_icon"
+                android:drawablePadding="15dp"
+                android:inputType="textPassword"
+                android:layout_marginLeft="30dp"
+                android:layout_marginRight="30dp"
+                android:layout_marginBottom="30dp"
+                />
+
+            <com.google.android.material.button.MaterialButton
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Register"
+                android:layout_marginTop="30dp"
+                android:id="@+id/registerbtn"
+                android:textColor="#ffffff"
+                android:textSize="14sp"
+                android:backgroundTint="@color/apptheme"
+                android:layout_marginLeft="30dp"
+                android:layout_marginRight="30dp"
+                android:layout_marginBottom="30dp"
+                />
+
+
+        </LinearLayout>
+
+    </ScrollView>
+
+
+
+</RelativeLayout>
