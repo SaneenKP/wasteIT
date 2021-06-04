@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.text.TextUtils;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -16,11 +17,13 @@ import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
 public class Login extends AppCompatActivity {
 
     private EditText email , password;
     private Button login , register;
-    private String eml , pass;
     private FirebaseAuth auth;
 
     @Override
@@ -44,11 +47,13 @@ public class Login extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
-                eml = email.getText().toString();
-                pass = password.getText().toString();
 
-                //Calls login method using email and password
-                login(eml , pass);
+                if (checkFields() && checkEmail(email.getText().toString()) && checkPassword(password.getText().toString())){
+
+                    //Calls login method using email and password
+                    login(email.getText().toString() , password.getText().toString());
+
+                }
 
 
             }
@@ -67,6 +72,47 @@ public class Login extends AppCompatActivity {
 
     }
 
+    //Method to check password text validity
+    private boolean checkPassword(String password){
+
+        String pattern = "^(?=.*[A-Za-z])(?=.*\\d)(?=.*[@$!%*#?&])[A-Za-z\\d@$!%*#?&]{6,}$";
+        Matcher patternMatcher = Pattern.compile(pattern).matcher(password);
+
+        if (!patternMatcher.matches()){
+            this.password.setError(" Must Contain Minimum six characters, at least one letter, one number and one special character");
+        }
+        return patternMatcher.matches();
+    }
+
+
+    //Method to check email text validity
+    private boolean checkEmail(String email){
+
+        String pattern = "[A-Z a-z 0-9]+@[0-9 A-Z a-z]+.com";
+
+        Pattern pattern1 = Pattern.compile(pattern);
+        Matcher matcher = pattern1.matcher(email);
+        return matcher.matches();
+    }
+
+    //Method to check all the fields if they are empty or not
+    private boolean checkFields(){
+
+        boolean status = false;
+
+        if (TextUtils.isEmpty(email.getText())){
+            email.setError("email field cannot be empty");
+            status = false;
+        }else if(TextUtils.isEmpty(password.getText())){
+            password.setError("Password field cannot be empty");
+            status = false;
+        }else{status = true;}
+
+        return status;
+    }
+
+
+    //Method to initiate login using email and password
     private void login(String email , String pass){
 
         auth = FirebaseAuth.getInstance();
