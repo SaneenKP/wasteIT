@@ -3,6 +3,7 @@ package com.example.wasteit;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.AlertDialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
@@ -25,6 +26,8 @@ public class Login extends AppCompatActivity {
     private EditText email , password;
     private Button login , register;
     private FirebaseAuth auth;
+    private CustomAlertDialog customAlertDialog;
+    private AlertDialog dialog;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -35,6 +38,9 @@ public class Login extends AppCompatActivity {
         try {
             getSupportActionBar().hide();
         }catch (NullPointerException e){}
+
+        customAlertDialog = new CustomAlertDialog(Login.this);
+        dialog = customAlertDialog.getDialog();
 
         //Attaching Variables with Layout Views
         email = findViewById(R.id.loginEmail);
@@ -116,19 +122,21 @@ public class Login extends AppCompatActivity {
     private void login(String email , String pass){
 
         auth = FirebaseAuth.getInstance();
-        
+        dialog.show();
         auth.signInWithEmailAndPassword(email , pass).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
             @Override
             public void onComplete(@NonNull Task<AuthResult> task) {
 
                 if (task.isSuccessful()){
 
+                    dialog.dismiss();
                      Intent openHome = new Intent(Login.this , MainActivity.class);
                     startActivity(openHome);
                     finish();
 
                 }else
                 {
+                    dialog.dismiss();
                     Toast.makeText(getApplicationContext() , "Login Failed due to  : " + task.getException() , Toast.LENGTH_LONG).show();
                 }
 

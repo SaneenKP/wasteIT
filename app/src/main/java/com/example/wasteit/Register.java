@@ -3,6 +3,8 @@ package com.example.wasteit;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.AlertDialog;
+import android.app.Dialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
@@ -29,6 +31,9 @@ public class Register extends AppCompatActivity {
     private EditText name , address , houseNo , email , password , confirmPassword;
     private FirebaseAuth firebaseAuth;
     private DatabaseReference databaseReference;
+    private CustomAlertDialog customAlertDialog;
+    private AlertDialog dialog;
+
 
 
     @Override
@@ -41,6 +46,8 @@ public class Register extends AppCompatActivity {
             getSupportActionBar().hide();
         }catch (NullPointerException e){}
 
+        customAlertDialog = new CustomAlertDialog(Register.this);
+        dialog = customAlertDialog.getDialog();
         register = findViewById(R.id.registerbtn);
         name = findViewById(R.id.registerName);
         address = findViewById(R.id.registerAddress);
@@ -70,7 +77,7 @@ public class Register extends AppCompatActivity {
                     }
 
                 }
-            
+
             }
         });
 
@@ -130,6 +137,8 @@ public class Register extends AppCompatActivity {
     private void register(String email , String password , UserDetails userDetails){
 
         firebaseAuth = FirebaseAuth.getInstance();
+
+        dialog.show();
         firebaseAuth.createUserWithEmailAndPassword(email , password).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
             @Override
             public void onComplete(@NonNull Task<AuthResult> task) {
@@ -143,12 +152,15 @@ public class Register extends AppCompatActivity {
 
                             if (task.isSuccessful()){
 
+                                dialog.dismiss();
                                 Toast.makeText(getApplicationContext() , "Registration Complete" , Toast.LENGTH_LONG).show();
+
                                 /*Intent openHome = new Intent();
                                 startActivity(openHome);*/
 
                             }else
                             {
+                                dialog.dismiss();
                                 Toast.makeText(getApplicationContext() , "Registration Failed : "+task.getException() , Toast.LENGTH_LONG).show();
 
                             }
@@ -160,6 +172,7 @@ public class Register extends AppCompatActivity {
                 }
                 else
                 {
+                    dialog.dismiss();
                     Toast.makeText(getApplicationContext() , "Registration Failed : "+task.getException() , Toast.LENGTH_LONG).show();
 
                 }
