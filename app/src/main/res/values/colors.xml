@@ -10,4 +10,5 @@
 
     <color name="apptheme">#31AA52</color>
     <color name="white_transperent">#B3ffffff</color>
+    <color name="nonClickable">#7C7474</color>
 </resources>

@@ -7,6 +7,7 @@ import android.app.AlertDialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -38,6 +39,13 @@ public class Login extends AppCompatActivity {
         try {
             getSupportActionBar().hide();
         }catch (NullPointerException e){}
+
+        if (FirebaseAuth.getInstance().getCurrentUser() !=null){
+
+            Intent intent = new Intent(Login.this , Profile.class);
+            startActivity(intent);
+            finish();
+        }
 
         customAlertDialog = new CustomAlertDialog(Login.this);
         dialog = customAlertDialog.getDialog();
@@ -72,6 +80,7 @@ public class Login extends AppCompatActivity {
 
                 Intent openRegister = new Intent(Login.this , Register.class);
                 startActivity(openRegister);
+
 
             }
         });
