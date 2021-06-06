@@ -6,6 +6,7 @@ public class UserDetails {
     private String name;
     private String HouseNo;
     private String Address;
+    private String coverPic;
 
     public String getEmail() {
         return email;
