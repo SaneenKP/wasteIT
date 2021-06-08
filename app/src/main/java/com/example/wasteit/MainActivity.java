@@ -11,23 +11,33 @@ import android.app.TimePickerDialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.ImageButton;
+import android.widget.ImageView;
+import android.widget.LinearLayout;
+import android.widget.TextView;
 import android.widget.TimePicker;
+import android.widget.Toast;
 
-import com.example.wasteit.UtilityClasses.DatePickerFragment;
+import org.w3c.dom.Text;
 
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.Locale;
 
 public class MainActivity extends AppCompatActivity {
 
     private EditText date , time;
     private int mYear, mMonth, mDay, mHour, mMinute;
     private ImageButton openProfile;
+    private Button dispose;
+    private LinearLayout linearLayout , storeContainer;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -44,6 +54,29 @@ public class MainActivity extends AppCompatActivity {
         disableEditext(time);
 
         openProfile = findViewById(R.id.profileMenu);
+        dispose = findViewById(R.id.dispose);
+
+        linearLayout = (LinearLayout) findViewById(R.id.layoutContainer);
+        storeContainer = (LinearLayout) findViewById(R.id.storeContainer);
+
+        setProduct("saneen" , "250" , "waste" , "25");
+        setProduct("saneen" , "250" , "waste" , "25");
+        setProduct("saneen" , "250" , "waste" , "25");
+        setProduct("saneen" , "250" , "waste" , "25");
+
+
+
+        dispose.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                LayoutInflater inflater = LayoutInflater.from(getApplicationContext());
+                View to_add = inflater.inflate(R.layout.booking_status, linearLayout ,false);
+                TextView text = to_add.findViewById(R.id.bookedStatus);
+                linearLayout.addView(to_add);
+
+            }
+        });
 
 
         openProfile.setOnClickListener(new View.OnClickListener() {
@@ -73,11 +106,34 @@ public class MainActivity extends AppCompatActivity {
         });
     }
 
+    public void setProduct(String name , String price , String description , String points){
+
+        LayoutInflater inflater1 = LayoutInflater.from(getApplicationContext());
+        View v = inflater1.inflate(R.layout.product_layout, storeContainer ,false);
+
+        TextView productName =  v.findViewById(R.id.productName);
+        TextView productDescription =  v.findViewById(R.id.productDescription);
+        TextView productPrice =  v.findViewById(R.id.productPrice);
+        TextView productPoints =  v.findViewById(R.id.productPoints);
+        ImageView produceImage = v.findViewById(R.id.productImage);
+        Button buyProduct = v.findViewById(R.id.buyProduct);
+
+        productName.setText(name);
+        productDescription.setText(description);
+        productPrice.setText(price);
+        productPoints.setText(points);
+
+
+        storeContainer.addView(v);
+
+    }
+
     public void showTimePickerDialog(){
 
         final Calendar c = Calendar.getInstance();
         mHour = c.get(Calendar.HOUR_OF_DAY);
         mMinute = c.get(Calendar.MINUTE);
+
 
         // Launch Time Picker Dialog
         TimePickerDialog timePickerDialog = new TimePickerDialog(this,
@@ -100,6 +156,8 @@ public class MainActivity extends AppCompatActivity {
         mMonth = c.get(Calendar.MONTH);
         mDay = c.get(Calendar.DAY_OF_MONTH);
 
+        //c.getDisplayName(mMonth, Calendar.LONG, Locale.getDefault());
+
         DatePickerDialog datePickerDialog = new DatePickerDialog(this,
                 new DatePickerDialog.OnDateSetListener() {
 
@@ -113,7 +171,6 @@ public class MainActivity extends AppCompatActivity {
                 }, mYear, mMonth, mDay);
         datePickerDialog.show();
     }
-
 
 
     private EditText disableEditext(EditText editText){
