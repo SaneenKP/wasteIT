@@ -42,7 +42,7 @@ public class Login extends AppCompatActivity {
 
         if (FirebaseAuth.getInstance().getCurrentUser() !=null){
 
-            Intent intent = new Intent(Login.this , Profile.class);
+            Intent intent = new Intent(Login.this , MainActivity.class);
             startActivity(intent);
             finish();
         }
