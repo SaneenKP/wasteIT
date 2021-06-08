@@ -38,6 +38,7 @@ public class MainActivity extends AppCompatActivity {
     private ImageButton openProfile;
     private Button dispose;
     private LinearLayout linearLayout , storeContainer;
+    private String dateValue , timeValue ;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -47,6 +48,9 @@ public class MainActivity extends AppCompatActivity {
         try {
             getSupportActionBar().hide();
         }catch (NullPointerException e){}
+
+        dateValue = "";
+        timeValue = "";
 
         date = findViewById(R.id.date);
         time = findViewById(R.id.time);
@@ -70,10 +74,15 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
-                LayoutInflater inflater = LayoutInflater.from(getApplicationContext());
-                View to_add = inflater.inflate(R.layout.booking_status, linearLayout ,false);
-                TextView text = to_add.findViewById(R.id.bookedStatus);
-                linearLayout.addView(to_add);
+                if (dateValue.equals("") || timeValue.equals("")){
+
+                    Toast.makeText(getApplicationContext() , "Please select date and time" , Toast.LENGTH_LONG).show();
+
+                }else
+                {
+                    setDisposeStatus(dateValue , timeValue);
+                }
+
 
             }
         });
@@ -104,6 +113,19 @@ public class MainActivity extends AppCompatActivity {
                 showTimePickerDialog();
             }
         });
+    }
+
+    private void setDisposeStatus(String date , String time){
+
+        LayoutInflater inflater = LayoutInflater.from(getApplicationContext());
+        View to_add = inflater.inflate(R.layout.booking_status, linearLayout ,false);
+        TextView text = to_add.findViewById(R.id.bookedStatus);
+
+        text.setText(date + " , " + time);
+
+        linearLayout.addView(to_add);
+
+
     }
 
     public void setProduct(String name , String price , String description , String points){
@@ -144,19 +166,22 @@ public class MainActivity extends AppCompatActivity {
                                           int minute) {
 
                         time.setText(hourOfDay + ":" + minute);
+                        timeValue = hourOfDay + " : " + minute;
                     }
                 }, mHour, mMinute, false);
+
+
         timePickerDialog.show();
     }
 
     public void showDatePickerDialog() {
 
-        final Calendar c = Calendar.getInstance();
+        Calendar c = Calendar.getInstance();
         mYear = c.get(Calendar.YEAR);
         mMonth = c.get(Calendar.MONTH);
         mDay = c.get(Calendar.DAY_OF_MONTH);
 
-        //c.getDisplayName(mMonth, Calendar.LONG, Locale.getDefault());
+
 
         DatePickerDialog datePickerDialog = new DatePickerDialog(this,
                 new DatePickerDialog.OnDateSetListener() {
@@ -165,7 +190,10 @@ public class MainActivity extends AppCompatActivity {
                     public void onDateSet(DatePicker view, int year,
                                           int monthOfYear, int dayOfMonth) {
 
+                        String[] monthNames = {"January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"};
                         date.setText(dayOfMonth + " / " + (monthOfYear+1) + " / " + year);
+
+                        dateValue = dayOfMonth + " " + monthNames[monthOfYear+1]  + " " + year;
 
                     }
                 }, mYear, mMonth, mDay);

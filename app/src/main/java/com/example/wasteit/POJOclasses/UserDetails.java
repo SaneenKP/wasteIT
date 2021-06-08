@@ -8,6 +8,14 @@ public class UserDetails {
     private String Address;
     private String coverPic;
 
+    public String getCoverPic() {
+        return coverPic;
+    }
+
+    public void setCoverPic(String coverPic) {
+        this.coverPic = coverPic;
+    }
+
     public String getEmail() {
         return email;
     }

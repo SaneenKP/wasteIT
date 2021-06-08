@@ -107,7 +107,7 @@
                     android:layout_height="wrap_content"
                     android:backgroundTint="@android:color/transparent"
                     android:id="@+id/profileName"
-                    android:hint="Name"
+                    android:hint="name"
                     android:padding="20dp"
                     android:textSize="18sp"
                     android:drawableLeft="@drawable/name_icon"
@@ -116,7 +116,6 @@
                     android:layout_marginLeft="30dp"
                     android:layout_marginRight="30dp"
                     android:layout_marginBottom="30dp"
-                    android:text="SANEEN K P"
                     android:textColor="#7C7474"
                     android:textStyle="italic"
                     android:clickable="false"
@@ -140,7 +139,6 @@
                     android:textColor="#7C7474"
                     android:textStyle="italic"
                     android:clickable="false"
-                    android:text="B 202 Al ameen residency ,  newar causway road , adajan patia , surat -395009"
                     />
 
                 <com.google.android.material.textfield.TextInputEditText
@@ -148,7 +146,7 @@
                     android:layout_height="wrap_content"
                     android:backgroundTint="@android:color/transparent"
                     android:id="@+id/profileHouseNo"
-                    android:hint="House No"
+                    android:hint="HouseNo"
                     android:padding="20dp"
                     android:textSize="18sp"
                     android:drawableLeft="@drawable/house_no_icon"
@@ -159,7 +157,6 @@
                     android:textColor="#7C7474"
                     android:textStyle="italic"
                     android:clickable="false"
-                    android:text="A45T33S"
                     />
 
 
@@ -178,8 +175,6 @@
                     android:layout_marginBottom="30dp"
                     android:textColor="#7C7474"
                     android:textStyle="italic"
-                    android:text="saneen7096@gmail.com"
-
                     />
 
 

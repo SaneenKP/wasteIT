@@ -125,7 +125,7 @@
             android:layout_height="wrap_content"
             android:textSize="32sp"
             android:textStyle="bold"
-            android:text="Store "
+            android:text="Latest Products "
             android:textColor="@color/black"
             android:layout_margin="30dp"
             />
