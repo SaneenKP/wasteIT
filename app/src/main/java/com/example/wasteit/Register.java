@@ -103,6 +103,9 @@ public class Register extends AppCompatActivity {
 
         Pattern pattern1 = Pattern.compile(pattern);
         Matcher matcher = pattern1.matcher(email);
+        if (!matcher.matches()){
+            this.email.setError("Incorrect Format");
+        }
         return matcher.matches();
     }
 
@@ -155,8 +158,8 @@ public class Register extends AppCompatActivity {
                                 dialog.dismiss();
                                 Toast.makeText(getApplicationContext() , "Registration Complete" , Toast.LENGTH_LONG).show();
 
-                                /*Intent openHome = new Intent();
-                                startActivity(openHome);*/
+                                Intent openHome = new Intent();
+                                startActivity(openHome);
 
                             }else
                             {
