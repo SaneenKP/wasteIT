@@ -185,13 +185,12 @@ public class Profile extends AppCompatActivity implements View.OnFocusChangeList
             @Override
             public void onComplete(@NonNull Task<DataSnapshot> task) {
 
+                Log.d("user details" , task.getResult().toString());
                 UserDetails userDetails = task.getResult().getValue(UserDetails.class);
                 name.setText(userDetails.getName());
                 address.setText(userDetails.getAddress());
                 email.setText(userDetails.getEmail());
                 houseNo.setText(userDetails.getHouseNo());
-
-
 
 
                 if (userDetails.getCoverPic()!=null){
